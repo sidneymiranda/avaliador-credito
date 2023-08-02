@@ -6,6 +6,7 @@ import io.github.cursomicroservices.mscartoes.application.representation.Cartoes
 import io.github.cursomicroservices.mscartoes.domain.Cartao;
 import io.github.cursomicroservices.mscartoes.domain.CartaoCliente;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("cartoes")
 @RequiredArgsConstructor
+@Slf4j
 public class CartoesResource {
 
     private final CartaoService cartaoService;
@@ -34,13 +36,13 @@ public class CartoesResource {
     }
 
     @GetMapping(params = "renda")
-    public ResponseEntity<List<Cartao>> getCartoesRendaAte(@PathParam("renda") Long renda) {
+    public ResponseEntity<List<Cartao>> getCartoesRendaAte(@RequestParam("renda") Long renda) {
         List<Cartao> cartoes = cartaoService.getCartoesRendaMenorIgual(renda);
         return ResponseEntity.ok(cartoes);
     }
 
     @GetMapping(params = "cpf")
-    public ResponseEntity<List<CartoesPorClienteResponse>> getCartoesByCliente(@PathParam("cpf") String cpf) {
+    public ResponseEntity<List<CartoesPorClienteResponse>> getCartoesByCliente(@RequestParam("cpf") String cpf) {
         var lista = cartaoClienteService.listCartoesByCpf(cpf);
         var resultList = lista.stream()
                 .map(CartoesPorClienteResponse::fromModel)

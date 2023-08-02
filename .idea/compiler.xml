@@ -10,8 +10,8 @@
         <module name="eurekaserver" />
         <module name="mscartoes" />
         <module name="mscloudgateway" />
-        <module name="msclientes" />
         <module name="msavaliadorcredito" />
+        <module name="msclientes" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

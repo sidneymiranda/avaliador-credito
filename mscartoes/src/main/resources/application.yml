@@ -2,6 +2,21 @@ spring:
   application:
     name: mscartoes
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  datasource:
+    url: jdbc:h2:mem:mscartoes
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
 server:
   port: 0
 
@@ -13,3 +28,7 @@ eureka:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     prefer-ip-address: true
     hostname: localhost
+
+mq:
+  queues:
+    emissao-cartoes: emissao-cartoes
