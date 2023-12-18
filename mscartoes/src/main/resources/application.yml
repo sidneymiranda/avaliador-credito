@@ -3,7 +3,7 @@ spring:
     name: mscartoes
 
   rabbitmq:
-    host: localhost
+    host: 192.168.1.67
     port: 5672
     username: guest
     password: guest
@@ -31,4 +31,4 @@ eureka:
 
 mq:
   queues:
-    emissao-cartoes: emissao-cartoes
+    emissao-cartoes: cartoes.v1.cartao-criado

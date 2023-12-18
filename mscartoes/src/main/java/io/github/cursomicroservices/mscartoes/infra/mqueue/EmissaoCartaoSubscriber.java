@@ -1,6 +1,5 @@
-package io.github.cursomicroservices.mscartoes.infra.repository.infra.mqueue;
+package io.github.cursomicroservices.mscartoes.infra.mqueue;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cursomicroservices.mscartoes.domain.Cartao;
 import io.github.cursomicroservices.mscartoes.domain.CartaoCliente;
 import io.github.cursomicroservices.mscartoes.domain.DadosSolicitacaoEmissaoCartao;
@@ -8,7 +7,6 @@ import io.github.cursomicroservices.mscartoes.infra.repository.CartaoClienteRepo
 import io.github.cursomicroservices.mscartoes.infra.repository.CartaoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,10 +17,8 @@ public class EmissaoCartaoSubscriber {
     private final CartaoClienteRepository cartaoClienteRepository;
 
     @RabbitListener(queues = "${mq.queues.emissao-cartoes}")
-    public void receberSolicitacaoEmissao(@Payload String payload) {
+    public void receberSolicitacaoEmissao(DadosSolicitacaoEmissaoCartao dados) {
         try {
-            var mapper = new ObjectMapper();
-            DadosSolicitacaoEmissaoCartao dados = mapper.readValue(payload, DadosSolicitacaoEmissaoCartao.class);
             Cartao cartao = cartaoRepository.findById(dados.getIdCartao()).orElseThrow();
 
             CartaoCliente cartaoCliente = new CartaoCliente();

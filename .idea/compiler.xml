@@ -16,11 +16,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="curso-microservices" target="11" />
-      <module name="eurekaserver" target="11" />
-      <module name="msavaliadorcredito" target="11" />
-      <module name="mscartoes" target="11" />
-      <module name="msclientes" target="11" />
-      <module name="mscloudgateway" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

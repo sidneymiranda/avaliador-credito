@@ -1,24 +1,13 @@
-package io.github.cursomicroservices.msavaliadorcredito.config;
+package io.github.cursomicroservices.mscartoes.infra.mqueue;
 
-import org.springframework.amqp.core.FanoutExchange;
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MQConfig {
-
-    @Value("${mq.exchanges.cartoes}")
-    private String exchangeCartoes;
-
-    @Bean
-    public FanoutExchange fanoutExchange() {
-        return new FanoutExchange(exchangeCartoes);
-    }
 
     @Bean
     public Jackson2JsonMessageConverter messageConverter() {
